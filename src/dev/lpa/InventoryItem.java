@@ -41,7 +41,7 @@ public class InventoryItem {
     if (qtyTotal >= qty) {
       qtyTotal -= qty;
       qtyReserved -= qty;
-      if (qtyTotal >= qtyLow) {
+      if (qtyTotal <= qtyLow) {
         placeInventoryOrder();
       }
       return true;
