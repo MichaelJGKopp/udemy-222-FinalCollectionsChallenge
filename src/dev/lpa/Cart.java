@@ -70,7 +70,7 @@ public class Cart {
       int qty = cartItem.getValue();
       double itemizedPrice = qty * item.getPrice();
       total += itemizedPrice;
-      System.out.printf("\t %s %-10s (%d) $%.2f $%.2f%n",
+      System.out.printf("\t %s %-10s (%d)@ $%.2f $%.2f%n",
         product.sku(), product.name(), qty, item.getPrice(), itemizedPrice);
     }
     System.out.printf("Total Sale: $%.2f%n", total);
