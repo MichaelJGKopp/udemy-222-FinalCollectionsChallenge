@@ -1,5 +1,6 @@
 package dev.lpa;
 
+import java.time.LocalDate;
 import java.util.*;
 
 public class Store {
@@ -28,6 +29,14 @@ public class Store {
     System.out.println("CARTS");
     System.out.println("----------------------------------------------");
     myStore.carts.forEach(System.out::println);
+    System.out.println();
+
+    myStore.abandonCarts();
+    System.out.println("CARTS NOT ABANDONED");
+    System.out.println("----------------------------------------------");
+    myStore.carts.forEach(System.out::println);
+    System.out.println();
+    myStore.listProductsByCategory(false, true);
   }
 
   private void manageStoreCarts() {
@@ -81,8 +90,35 @@ public class Store {
   }
 
   private void abandonCarts() {
-    // TODO: implement method
 
+//    var abandonedCarts = carts.stream()
+//      .filter(c -> c.getCartDate() != null && !c.getCartDate().equals(LocalDate.now()))
+//      .collect(Collectors.toSet());
+//
+//    abandonedCarts
+//      .stream()
+//      .map(Cart::getProducts)
+//      .forEach(products -> products
+//        .forEach((sku, qty) -> inventory.get(sku).releaseItem(qty))); // side effects
+//
+//    carts.removeAll(abandonedCarts);
+
+    int dayOfYear = LocalDate.now().getDayOfYear();
+    Cart lastCart = null;
+    for (var c : carts) {
+      if (c.getCartDate().getDayOfYear() == dayOfYear) {
+        break;
+      }
+      lastCart = c;
+    }
+    var oldCarts = carts.headSet(lastCart, true);
+    Cart abandonedCart = null;
+    while ((abandonedCart = oldCarts.pollFirst()) != null) {
+      for (String sku : abandonedCart.getProducts().keySet()) {
+        InventoryItem item = inventory.get(sku);
+        item.releaseItem(abandonedCart.getProducts().get(sku));
+      }
+    }
   }
 
   private void listProductsByCategory() {
