@@ -52,6 +52,11 @@ public class Store {
     if (!checkOutCart(cart3)) {
       System.out.println("Something went wrong, could not check out");
     }
+
+    Cart cart4 = new Cart(Cart.CartType.PHYSICAL, 0);
+    carts.add(cart4);
+    cart4.addItem(aisleInventory.get(Category.BEVERAGE).get("tea"), 1);
+    System.out.println(cart4);
   }
 
   private boolean checkOutCart(Cart cart) {
