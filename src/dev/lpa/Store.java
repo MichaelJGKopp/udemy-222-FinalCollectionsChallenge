@@ -38,6 +38,12 @@ public class Store {
 
     cart1.removeItem(aisleInventory.get(Category.PRODUCE).get("pear"), 2);
     System.out.println(cart1);
+
+    Cart cart2 = new Cart(Cart.CartType.VIRTUAL, 1);
+    carts.add(cart2);
+    cart2.addItem(inventory.get("L103"), 20);
+    cart2.addItem(inventory.get("B100"), 10);
+    System.out.println(cart2);
   }
 
   private boolean checkOutCart(Cart cart) {
