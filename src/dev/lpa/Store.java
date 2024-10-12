@@ -23,6 +23,11 @@ public class Store {
     System.out.println();
 
     myStore.listProductsByCategory(false, true);
+    System.out.println();
+
+    System.out.println("CARTS");
+    System.out.println("----------------------------------------------");
+    myStore.carts.forEach(System.out::println);
   }
 
   private void manageStoreCarts() {
