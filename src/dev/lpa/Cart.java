@@ -77,8 +77,8 @@ public class Cart {
   public String toString() {
     return "Cart{" +
       "id=" + id +
-      ", products=" + products +
       ", cartDate=" + cartDate +
+      ", products=" + products +
       '}';
   }
 }
